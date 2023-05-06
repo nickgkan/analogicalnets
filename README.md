@@ -34,12 +34,12 @@ For CUDA 11.1, follow these steps:
 
 - [Download PartNet](https://www.shapenet.org/download/parts). We only need ins_seg_h5.zip. Unzip. Then let PATH_TO_ins_seg_h5 be the path to the unzipped folder `ins_seg_h5/`, found inside ins_seg_h5.zip.
 
-- Clone `https://github.com/daerduoCarey/partnet_dataset` to PATH_TO_PARTNET_REPO
+- Clone `https://github.com/daerduoCarey/partnet_dataset` to `PATH_TO_PARTNET_REPO`.
 
-- Run `python prepare_partnet.py --merging_data_path PATH_TO_PARTNET_REPO/stats/after_merging_label_ids/ --in_path PATH_TO_ins_seg_h5 --out_path PATH_TO_PARTNET`, where PATH_TO_PARTNET is the path to store the processed annotation files (you can define this path).
+- Run `python prepare_partnet.py --merging_data_path PATH_TO_PARTNET_REPO/stats/after_merging_label_ids/ --in_path PATH_TO_ins_seg_h5 --out_path PATH_TO_PARTNET`, where `PATH_TO_PARTNET` is the path to store the processed annotation files (you can define this path).
 
   
 
 ## Run
-Detailed scripts and checkpoints coming soon (ETA May 5th, 2023).
+Checkpoints coming soon.
 

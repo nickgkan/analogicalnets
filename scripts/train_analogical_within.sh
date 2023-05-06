@@ -1,0 +1,13 @@
+python main.py \
+    --run_name analogical_within \
+    --checkpoint analogical_within.pt \
+    --checkpoint_path CHECKPOINT_PATH \
+    --anno_path PATH_TO_PARTNET \
+    --feat_path FEAT_PATH \
+    --label_path PATH_TO_PARTNET_REPO/stats/after_merging_label_ids/ \
+    --lr 2e-4 --batch_size 16 --epochs 400 \
+    --model analogical_nets \
+    --rotary_pe --pre_norm --feat_dim 264 \
+    --negative_obj_weight 0.2 \
+    --same_wild_augment_train \
+    --train_split multicat12
