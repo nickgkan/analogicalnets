@@ -1,7 +1,11 @@
 # Analogy-Forming Transformers for Few-Shot 3D Parsing
-Code for our [ICLR 2023 paper](https://arxiv.org/abs/2304.14382).
 
-## Requirements
+Official implementation of our [ICLR 2023 paper](https://arxiv.org/abs/2304.14382). By [Nikolaos Gkanatsios](https://github.com/nickgkan), [Mayank Singh](https://github.com/msingh27), [Zhaoyuan Fang](https://github.com/zfang399), [Shubham Tulsiani](http://shubhtuls.github.io/), [Katerina Fragkiadaki](https://www.cs.cmu.edu/~katef/).
+
+![teaser](gif_iclr_modulation.gif)
+
+## Installation
+### Requirements
 
 We showcase the installation for CUDA 11.1 and torch==1.10.2, which is what we used for our experiments.
 We were able to reproduce the results with PyTorch 1.12 and CUDA 11.3 as well.
@@ -30,16 +34,69 @@ For CUDA 11.1, follow these steps:
 
   
 
-## Data
+### Data
 
-- [Download PartNet](https://www.shapenet.org/download/parts). We only need ins_seg_h5.zip. Unzip. Then let PATH_TO_ins_seg_h5 be the path to the unzipped folder `ins_seg_h5/`, found inside ins_seg_h5.zip.
+- [Download PartNet](https://www.shapenet.org/download/parts). We only need ins_seg_h5.zip. Unzip. Then let `PATH_TO_ins_seg_h5` be the path to the unzipped folder `ins_seg_h5/`, found inside ins_seg_h5.zip.
 
-- Clone `https://github.com/daerduoCarey/partnet_dataset` to `PATH_TO_PARTNET_REPO`.
+- Clone `https://github.com/daerduoCarey/partnet_dataset` to a path of your choice, let it be `PATH_TO_PARTNET_REPO`.
 
-- Run `python prepare_partnet.py --merging_data_path PATH_TO_PARTNET_REPO/stats/after_merging_label_ids/ --in_path PATH_TO_ins_seg_h5 --out_path PATH_TO_PARTNET`, where `PATH_TO_PARTNET` is the path to store the processed annotation files (you can define this path).
+- Run `python prepare_partnet.py --merging_data_path PATH_TO_PARTNET_REPO/stats/after_merging_label_ids/ --in_path PATH_TO_ins_seg_h5 --out_path PATH_TO_PARTNET`, where `PATH_TO_PARTNET` is the path where processed annotation files are going to be stored (you can define this path).
 
   
 
-## Run
+## Usage
+### Important paths to define:
+
+- `CHECKPOINT_PATH`: where the trained checkpoints are stored/loaded from. Our code expects that all model/retriever checkpoints are in this folder.
+
+- `FEAT_PATH`: where the pre-computed memory features are going to be stored. This has to take place only once (except if you want to use another retriever later).
+
+- `PATH_TO_PARTNET_REPO`: as defined above, path to the cloned PartNet repository.
+
+- `PATH_TO_PARTNET`: as defined above, path to processed annotation files.
+
+These paths need to specified in every script you run.
+
+
+### Scripts for each model:
+
+- `./scripts/train_3ddetr.sh`: trains/tests our fully-parametric baseline DETR3D on all levels and classes of PartNet.
+
+- `./scripts/train_analogical_cross.sh`: trains/tests our analogical networks cross-scene. You preferably need a within-scene pre-trained network first. See next script. The retriever can be any checkpoint/model. By default, we use the within-scene pre-trained model.
+
+- `./scripts/train_analogical_within.sh`: within-scene pre-training of our analogical networks.
+
+- `./scripts/train_analogical_multimem.sh`: naive multi-memory model cross-scene training.
+
+- `./scripts/train_multimem.sh`: within-scene pre-training of the enhanced multi-memory model.
+
+- `./scripts/train_multimem_cross.sh`: cross-scene training of the enhanced multi-memory model.
+
+- `./scripts/train_re3ddetr.sh`: single-memory Re-DETR3D.
+
+- `./scripts/train_re3ddetr_multimem.sh`: multi-memory Re-DETR3D.
+
+
+### Evaluate/fine-tune few-shot
+
+- Use `--eval` to evaluate on the validation many-shot set. Check the respective arguments in `main.py` to i) evaluate on another split, ii) evaluate on a specific class/level (the code will show statistics for all classes regardless).
+
+- Use `--k_shot_seed 10` if you want to test few-shot. Specify `--eval_multitask` to the number of different few-shot tasks you want to evaluate on (we use 10 in our experiments).
+
+-- Specify `ft_epoch` to the number of fine-tuning epochs, if you want to fine-tune (we use 90 in our experiments). Note that fine-tuning is optional for the memory-based models.
+
 Checkpoints coming soon.
+
+
+## Citing Analogy-forming Transformers
+If you find our work useful in your research, please consider citing:
+```bibtex
+@article{gkanatsios2023analogical,
+  author    = {Gkanatsios, Nikolaos and Singh, Mayank and Fang, Zhaoyuan and Tulsiani, Shubham and Fragkiadaki, Katerina},
+  title     = {Analogy-Forming Transformers for Few-Shot 3D Parsing},
+  journal   = {ICLR},
+  year      = {2023},
+}
+    
+```
 
