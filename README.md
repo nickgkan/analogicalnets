@@ -68,13 +68,15 @@ These paths need to specified in every script you run.
 
 - `./scripts/train_analogical_multimem.sh`: naive multi-memory model cross-scene training.
 
-- `./scripts/train_multimem.sh`: within-scene pre-training of the enhanced multi-memory model.
+- `./scripts/train_multimem_within.sh`: within-scene pre-training of the enhanced multi-memory model.
 
 - `./scripts/train_multimem_cross.sh`: cross-scene training of the enhanced multi-memory model.
 
 - `./scripts/train_re3ddetr.sh`: single-memory Re-DETR3D.
 
 - `./scripts/train_re3ddetr_multimem.sh`: multi-memory Re-DETR3D.
+
+We also include an enhanced version of our multi-memory model that has additional attention layers for each memory point cloud separately. Empirically, it gives somewhat better many-show performance, but similar few-shot performance.
 
 
 ### Evaluate/fine-tune few-shot
@@ -83,9 +85,11 @@ These paths need to specified in every script you run.
 
 - Use `--k_shot_seed 10` if you want to test few-shot. Specify `--eval_multitask` to the number of different few-shot tasks you want to evaluate on (we use 10 in our experiments).
 
--- Specify `ft_epoch` to the number of fine-tuning epochs, if you want to fine-tune (we use 90 in our experiments). Note that fine-tuning is optional for the memory-based models.
+- Specify `--ft_epoch` to the number of fine-tuning epochs, if you want to fine-tune (we use 90 in our experiments). Note that fine-tuning is optional for the memory-based models.
 
-Checkpoints coming soon.
+
+### Checkpoints
+Download all our checkpoints for the above scripts [here](https://drive.google.com/file/d/1HU4znoiWe7Mb3RTPkFnGhEYRoumlZnEp/view?usp=sharing). We do not provide checkpoints for the few-shot experiments, as we run over multiple few-shot seeds. It should be easy to obtain a fine-tuned model for the novel classes within 1-2 hours.
 
 
 ## Citing Analogy-forming Transformers

@@ -1,5 +1,5 @@
 python main.py \
-    --run_name analogical_cross_identity \
+    --run_name analogical_cross \
     --checkpoint analogical_cross.pt \
     --bootstrap analogical_within.pt \
     --checkpoint_path CHECKPOINT_PATH \

@@ -1,7 +1,7 @@
 python main.py \
-    --run_name analogical_multimem_cross \
-    --checkpoint analogical_multimem_cross.pt \
-    --bootstrap analogical_multimem_within.pt \
+    --run_name multimem_cross \
+    --checkpoint multimem_cross.pt \
+    --bootstrap multimem_within.pt \
     --checkpoint_path CHECKPOINT_PATH \
     --anno_path PATH_TO_PARTNET \
     --feat_path FEAT_PATH \

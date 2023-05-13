@@ -1,6 +1,6 @@
 python main.py \
-    --run_name analogical_multimem_within \
-    --checkpoint analogical_multimem_within.pt \
+    --run_name multimem_within \
+    --checkpoint multimem_within.pt \
     --checkpoint_path CHECKPOINT_PATH \
     --anno_path PATH_TO_PARTNET \
     --feat_path FEAT_PATH \

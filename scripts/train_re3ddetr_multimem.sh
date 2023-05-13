@@ -1,6 +1,6 @@
 python main.py \
-    --run_name redetr_multimem \
-    --checkpoint redetr_multimem.pt \
+    --run_name re3ddetr_multimem \
+    --checkpoint re3ddetr_multimem.pt \
     --bootstrap analogical_multimem_within.pt \
     --checkpoint_path CHECKPOINT_PATH \
     --anno_path PATH_TO_PARTNET \
